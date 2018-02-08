@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang='en' style='height: auto;'>
+    <head>
+        <title>Flu Map</title>
+        <meta name='viewport' content='width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no'>
+        <meta charset='utf-8'>
+        <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+        <meta http-equiv='Cache-Control' content='no-cache, no-store, must-revalidate' />
+        <meta http-equiv='Pragma' content='no-cache' />
+        <meta http-equiv='Expires' content='0' />
+
+        <script type='text/javascript'>
+            // https://github.com/filamentgroup/loadJS
+            !function(e){var t=function(t,n){"use strict";var o=e.document.getElementsByTagName("script")[0],r=e.document.createElement("script");return r.src=t,r.async=!0,o.parentNode.insertBefore(r,o),n&&"function"==typeof n&&(r.onload=n),r};"undefined"!=typeof module?module.exports=t:e.loadJS=t}("undefined"!=typeof global?global:this);
+        </script>
+
+        <style>
+            *{-moz-box-sizing:border-box;box-sizing:border-box}a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,caption,center,cite,code,dd,del,details,dfn,div,dl,dt,em,embed,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,html,i,iframe,img,ins,kbd,label,legend,li,mark,menu,nav,object,ol,output,p,pre,q,ruby,s,samp,section,small,span,strike,strong,sub,summary,sup,table,tbody,td,tfoot,th,thead,time,tr,tt,u,ul,var,video{margin:0;padding:0;border:0;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body,html{height:100%}a img{border:none}blockquote{quotes:none}blockquote:after,blockquote:before{content:'';content:none}table{border-collapse:collapse;border-spacing:0}caption,td,th{text-align:left;font-weight:400;vertical-align:middle}body{font-family:Georgia,Times New Roman,Times,serif;line-height:1.6}a{transition:color .1s;color:#59889d;text-decoration:none}a:active,a:focus,a:hover{color:#334f5b;text-decoration:none}.source-and-credit{clear:both;width:100%;overflow:hidden;margin-top:1em}.source-and-credit p{line-height:1.6;padding:0;margin:0;font-size:11px;text-align:left;float:none}.source-and-credit .source span{font-weight:700}.source-and-credit .credit span{color:#999;text-transform:uppercase;letter-spacing:.05em}@media (min-width:600px){.source-and-credit .source{float:left}.source-and-credit .credit{text-align:right;float:right}}
+        </style>
+        
+        <!-- UPDATE VERSION # IF YOU NEED TO REPUBLISH -->
+        <link rel='stylesheet' href='main.css?version=1' />
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+        <link rel='shortcut icon' href='https://www.bostonglobe.com/rw/SysConfig/WebPortal/BostonGlobe/Framework/images/favicon.ico' />
+    </head>
+    <body style='height: auto;'>
+
+
+
+        <!-- *** DO NOT DELETE *** -->
+        <div id='globe-graphic-container' style='height: 100%; overflow: hidden;'>
+
+            <!--
+            ==========================
+            BEGIN: GRAPHIC CODE HERE
+            ==========================
+            -->
+            <div class='graphichead'>This is the first year all states are overwhelmed by widespread flu</div>
+            <p class='subtitle'>The influenza virus that’s sickened millions of Americans is already the most widespread outbreak since public health authorities began keeping track more than a dozen years ago, Bloomberg News reported this week.
+               "Flu is everywhere in the US right now," said Dan Jernigan, director of the influenza division at the national Center for Immunization and Respiratory Diseases. "This is the first year we have had the entire continental US be the same color on the graph, meaning there is widespread activity in all of the continental US at this point."</p>
+            <div class='plot' id='map'>
+                <p class="showNote">January <span id="showYear">2009</span></p>
+            </div>
+
+            <!-- begin ai2html here DO NOT MODIFY THIS LINE -->
+
+            <!-- end ai2html here DO NOT MODIFY THIS LINE -->
+
+            <div class='source-and-credit'>
+                <p id="note">Note: <br/>
+                    No activity/report: No laboratory-confirmed influenza and no increase in influenza-like illness or the state did not report.<br/>
+                    Sporadic: Small numbers of laboratory-confirmed influenza cases or a single laboratory-confirmed influenza outbreak, but no increase in influenza-like illness.<br/>
+                    Local: Influenza outbreaks or increases in influenza-like illness and recent laboratory-confirmed influenza in a single region of the state.<br/>
+                    Regional: Influenza outbreaks or increases in influenza-like illness and recent laboratory-confirmed influenza in at least two, but less than half, of the state’s regions with recent laboratory evidence of influenza in those regions.<br/>
+                    Widespread: Influenza outbreaks or increases in influenza-like illness and recent laboratory-confirmed influenza in at least half the state’s regions with recent laboratory evidence of influenza in the state.</p>
+                <p class='source'><span>SOURCE: Centers for Disease Control and Prevention</span></p>
+                <p class='credit'><span>Yan Wu / Globe Staff</span></p>
+            </div>
+            <!--
+            ==========================
+            END OF GRAPHIC CODE
+            ==========================
+            -->
+
+        </div>
+
+        <!-- (begin) put js libraries here -->
+        <script src = './us-states.js'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/4.10.0/d3.min.js' type='text/javascript'></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+        <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+
+        <!-- (end) -->
+
+        <!--
+        ============================
+        *** DO NOT GO BELOW HERE *** 
+        ============================
+        -->
+       
+
+        <!-- (begin) globe iframe embed -->
+        <script src='https://apps.bostonglobe.com/common/js/pym/pym-poll.min.js'></script>
+        <script>
+            // version
+            if (window.console && console.log) console.log('-- globe iframe graphic v2.0.3 --');
+            (function() {
+                var d = new Date();
+                var timestamp = d.getTime();
+                var js = 'main.js?v=' + timestamp;
+                loadJS(js, function() {
+                    window.pymChild = pym.Child({ renderCallback: window.onResize, polling: true });
+                    pymChild.onMessage('enter-view', window.enterView);
+                    pymChild.sendMessage('ready', true);
+                });
+            })();
+        </script>
+        <!-- (end) globe iframe embed -->
+    </body>
+</html>
